@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Lycée</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formulaire.css') }}"/>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('submit_form') }}">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="date_naissance">Date de naissance</label>
+        <input type="date" id="date_naissance" name="date_naissance" required>
+
+        <label for="spe1">Spécialité 1</label>
+        <select id="spe1" name="spe1">
+            {% for specialite in specialites_lycee %}
+                <option value="{{ specialite }}">{{ specialite }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="spe2">Spécialité 2</label>
+        <select id="spe2" name="spe2">
+            {% for specialite in specialites_lycee %}
+                <option value="{{ specialite }}">{{ specialite }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="spe3">Spécialité 3</label>
+        <select id="spe3" name="spe3">
+            {% for specialite in specialites_lycee %}
+                <option value="{{ specialite }}">{{ specialite }}</option>
+            {% endfor %}
+        </select>
+
+        <table>
+            <tr>
+                {% for i in range(3) %}
+                    <th>Option {{ i+1 }}</th>
+                {% endfor %}
+            </tr>
+            {% for i in range(0, options_lycee|length, 3) %}
+                <tr>
+                    {% for j in range(3) %}
+                        {% if i + j < options_lycee|length %}
+                            <td>
+                                <input type="checkbox" id="option{{ i + j }}" name="options{{ i + j }}" value="{{ options_lycee[i + j] }}">
+                                <label for="option{{ i + j }}">{{ options_lycee[i + j] }}</label>
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
