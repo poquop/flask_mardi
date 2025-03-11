@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Hello</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/eleve.css') }}"/>
     </head>
     <body>
         <table>
@@ -25,7 +26,11 @@
                         {% for matiere in t_eleve['notes'] %}
                             <tr>
                                 <td>{{ matiere }}</td>
-                                 <td>{{ t_eleve['notes'][matiere] }}</td>
+                                <td>
+                                    {% for note in t_eleve['notes'][matiere] %}
+                                        <span class="note">{{note}}</span>
+                                    {% endfor %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
