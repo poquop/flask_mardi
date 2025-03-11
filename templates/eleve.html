@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang=fr>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>nom</td>
+                <td>{{ t_eleve['nom'] }}</td>
+            </tr>
+            <tr>
+                <td>prenom</td>
+                <td>{{ t_eleve['prenom'] }}</td>
+            </tr>
+            <tr>
+                <td>age</td>
+                <td>{{ t_eleve['age'] }}</td>
+            </tr>
+            <tr>
+                <td>notes</td>
+                <td>
+                    <table>
+                        {% for matiere in t_eleve['notes'] %}
+                            <tr>
+                                <td>{{ matiere }}</td>
+                                 <td>{{ t_eleve['notes'][matiere] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
